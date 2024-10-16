@@ -1,19 +1,30 @@
+
+/*
+ * Código hecho por Jonathan Tubac 24484
+ * Programa de concesionaria de autos, motos y camiones
+ * 
+ * El programa consiste en una aplicación para poder agregar vehículos a una concesionaria, ya sea moto, camión o auto, y en este mismo se debe de poder
+ * buscar cualquier vehiculo por placa, listarlos por categorias, eliminar alguno, mostrar el estado de estos y calcular el monto total por estado.
+ */
+
+
 public abstract class Vehiculo {
     protected String placa;
     protected String marca;
     protected String modelo;
     protected int año;
     protected String color;
-    protected double capacidadMotor; // En litros (L) o cc (motocicleta)
-    protected double capacidadTanque; // En litros
-    protected double velocidadMaxima; // En km/h
-    protected String tipoTransmision; // Manual o automática
+    protected double capacidadMotor;
+    protected double capacidadTanque;
+    protected double velocidadMaxima;
+    protected String tipoTransmision;
     protected double precio;
-    protected String estado; // Disponible, reservado o vendido
+    protected String estado;
 
-    public Vehiculo(String placa, String marca, String modelo, int año, String color, 
-                    double capacidadMotor, double capacidadTanque, double velocidadMaxima, 
-                    String tipoTransmision, double precio, String estado) {
+    //Constructor de la clase Vehiculo
+    public Vehiculo(String placa, String marca, String modelo, int año, String color,
+            double capacidadMotor, double capacidadTanque, double velocidadMaxima,
+            String tipoTransmision, double precio, String estado) {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
@@ -28,44 +39,100 @@ public abstract class Vehiculo {
     }
 
     // Getters y Setters
-    public String getPlaca() { return placa; }
-    public void setPlaca(String placa) { this.placa = placa; }
+    public String getPlaca() {
+        return placa;
+    }
 
-    public String getMarca() { return marca; }
-    public void setMarca(String marca) { this.marca = marca; }
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
-    public String getModelo() { return modelo; }
-    public void setModelo(String modelo) { this.modelo = modelo; }
+    public String getMarca() {
+        return marca;
+    }
 
-    public int getAño() { return año; }
-    public void setAño(int año) { this.año = año; }
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
-    public String getColor() { return color; }
-    public void setColor(String color) { this.color = color; }
+    public String getModelo() {
+        return modelo;
+    }
 
-    public double getCapacidadMotor() { return capacidadMotor; }
-    public void setCapacidadMotor(double capacidadMotor) { this.capacidadMotor = capacidadMotor; }
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
-    public double getCapacidadTanque() { return capacidadTanque; }
-    public void setCapacidadTanque(double capacidadTanque) { this.capacidadTanque = capacidadTanque; }
+    public int getAño() {
+        return año;
+    }
 
-    public double getVelocidadMaxima() { return velocidadMaxima; }
-    public void setVelocidadMaxima(double velocidadMaxima) { this.velocidadMaxima = velocidadMaxima; }
+    public void setAño(int año) {
+        this.año = año;
+    }
 
-    public String getTipoTransmision() { return tipoTransmision; }
-    public void setTipoTransmision(String tipoTransmision) { this.tipoTransmision = tipoTransmision; }
+    public String getColor() {
+        return color;
+    }
 
-    public double getPrecio() { return precio; }
-    public void setPrecio(double precio) { this.precio = precio; }
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public double getCapacidadMotor() {
+        return capacidadMotor;
+    }
 
+    public void setCapacidadMotor(double capacidadMotor) {
+        this.capacidadMotor = capacidadMotor;
+    }
+
+    public double getCapacidadTanque() {
+        return capacidadTanque;
+    }
+
+    public void setCapacidadTanque(double capacidadTanque) {
+        this.capacidadTanque = capacidadTanque;
+    }
+
+    public double getVelocidadMaxima() {
+        return velocidadMaxima;
+    }
+
+    public void setVelocidadMaxima(double velocidadMaxima) {
+        this.velocidadMaxima = velocidadMaxima;
+    }
+
+    public String getTipoTransmision() {
+        return tipoTransmision;
+    }
+
+    public void setTipoTransmision(String tipoTransmision) {
+        this.tipoTransmision = tipoTransmision;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    //devolver el valor de los atributos, para ser llamados en la Main
     @Override
     public String toString() {
-        return "Placa: " + placa + ", Marca: " + marca + ", Modelo: " + modelo + ", Año: " + año + 
-               ", Color: " + color + ", Capacidad del motor: " + capacidadMotor + "L, Tanque: " + 
-               capacidadTanque + "L, Velocidad máxima: " + velocidadMaxima + " km/h, Transmisión: " + 
-               tipoTransmision + ", Precio: Q" + precio + ", Estado: " + estado;
+        return "Placa: " + placa + ", Marca: " + marca + ", Modelo: " + modelo + ", Año: " + año +
+                ", Color: " + color + ", Capacidad del motor: " + capacidadMotor + "L, Tanque: " +
+                capacidadTanque + "L, Velocidad máxima: " + velocidadMaxima + " km/h, Transmisión: " +
+                tipoTransmision + ", Precio: Q" + precio + ", Estado: " + estado;
     }
 }

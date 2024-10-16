@@ -1,3 +1,11 @@
+
+/*
+ * Código hecho por Jonathan Tubac 24484
+ * Programa de concesionaria de autos, motos y camiones
+ * 
+ * El programa consiste en una aplicación para poder agregar vehículos a una concesionaria, ya sea moto, camión o auto, y en este mismo se debe de poder
+ * buscar cualquier vehiculo por placa, listarlos por categorias, eliminar alguno, mostrar el estado de estos y calcular el monto total por estado.
+ */
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +15,7 @@ public class Main {
         int opcion;
 
         do {
+
             // Menú de opciones
             System.out.println("\n--- Menú de la Concesionaria ---");
             System.out.println("1. Agregar vehículo");
@@ -50,15 +59,16 @@ public class Main {
         scanner.close();
     }
 
-    // Función para agregar un vehículo
+    // Función para agregar un vehículo ingresado a la lista
     public static void agregarVehiculo(InventarioVehiculos inventario, Scanner scanner) {
         System.out.println("Seleccione el tipo de vehículo a agregar:");
         System.out.println("1. Auto");
         System.out.println("2. Motocicleta");
         System.out.println("3. Camión");
         int tipo = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
+        // solicitud de datos al usuario
         System.out.print("Ingrese la placa: ");
         String placa = scanner.nextLine();
         System.out.print("Ingrese la marca: ");
@@ -85,6 +95,10 @@ public class Main {
         System.out.print("Ingrese el estado (Disponible/Reservado/Vendido): ");
         String estado = scanner.nextLine();
 
+        // condición para evaluar qué tipo de categoría es para solicitar los otros
+        // atributos necesarios
+
+        // categoria auto
         if (tipo == 1) {
             System.out.print("Ingrese el número de puertas: ");
             int numeroPuertas = scanner.nextInt();
@@ -97,7 +111,7 @@ public class Main {
             Auto auto = new Auto(placa, marca, modelo, año, color, capacidadMotor, capacidadTanque,
                     velocidadMaxima, tipoTransmision, precio, estado, numeroPuertas, tamañoRuedas, capacidadMaletero);
             inventario.agregarVehiculo(auto);
-
+            // categoria motocicleta
         } else if (tipo == 2) {
             System.out.print("Ingrese el tipo de motocicleta (Deportiva/Crucero/Scooter/etc.): ");
             String tipoMoto = scanner.nextLine();
@@ -108,7 +122,7 @@ public class Main {
             Motocicleta moto = new Motocicleta(placa, marca, modelo, año, color, capacidadMotor, capacidadTanque,
                     velocidadMaxima, tipoTransmision, precio, estado, tipoMoto, tamañoRuedas);
             inventario.agregarVehiculo(moto);
-
+            // categoria camión
         } else if (tipo == 3) {
             System.out.print("Ingrese la capacidad de carga (en toneladas): ");
             double capacidadCarga = scanner.nextDouble();
@@ -126,7 +140,7 @@ public class Main {
         System.out.println("Vehículo agregado correctamente.");
     }
 
-    // Función para buscar un vehículo por placa
+    // Función para buscar y mostrar un vehículo por su respectiva placa
     public static void buscarVehiculo(InventarioVehiculos inventario, Scanner scanner) {
         System.out.print("Ingrese la placa del vehículo a buscar: ");
         String placa = scanner.nextLine();
@@ -139,7 +153,7 @@ public class Main {
         }
     }
 
-    // Función para listar vehículos por categoría
+    // Función para mostrar vehículos por categoría
     public static void listarVehiculos(InventarioVehiculos inventario, Scanner scanner) {
         System.out.println("Seleccione la categoría para listar:");
         System.out.println("1. Autos");
@@ -148,6 +162,7 @@ public class Main {
         int tipo = scanner.nextInt();
         scanner.nextLine();
 
+        // condición para listar los vehiculos según la categoría deseada
         if (tipo == 1) {
             System.out.println("Listado de Autos:");
             for (Vehiculo v : inventario.listarVehiculosPorCategoria(Auto.class)) {
@@ -172,11 +187,18 @@ public class Main {
     public static void eliminarVehiculo(InventarioVehiculos inventario, Scanner scanner) {
         System.out.print("Ingrese la placa del vehículo a eliminar: ");
         String placa = scanner.nextLine();
-        inventario.eliminarVehiculo(placa);
-        System.out.println("Vehículo eliminado si existía.");
+        Vehiculo vehiculo = inventario.buscarVehiculoPorPlaca(placa);
+
+        if (vehiculo != null) {
+            inventario.eliminarVehiculo(placa);
+            System.out.println("Vehículo eliminado.");
+        }else{
+            System.out.println("No existe un vehiculo con placa: " + placa);
+        }
+
     }
 
-    // Función para calcular el monto total por estado
+    // Función para mostrar el monto total por estado del vehiculo
     public static void calcularMontoTotal(InventarioVehiculos inventario, Scanner scanner) {
         System.out.print("Ingrese el estado para calcular el monto total (Disponible/Reservado/Vendido): ");
         String estado = scanner.nextLine();
